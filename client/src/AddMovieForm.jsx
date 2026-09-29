@@ -8,6 +8,10 @@ function AddMovieForm(props) {
 
   async function handleAddMovie(e) {
     e.preventDefault();
+    if (!title) {
+      props.setError("Movie title is required");
+      return;
+    }
     try {
       props.setError(null);
 
@@ -29,30 +33,31 @@ function AddMovieForm(props) {
       setRating("");
       setNote("");
       return true;
-    } catch (error) {
+    } catch {
       props.setError("Failed to add movie");
       return false;
     }
   }
 
   return (
-    <div className="addNewMovie">
-      <form onSubmit={handleAddMovie}>
+    <section className={styles.formContainer}>
+      <form className={styles.form} onSubmit={handleAddMovie}>
         <label htmlFor="title">Movie Title:</label>
-        <br />
         <input
           className={styles.inputField}
           onChange={(e) => {
+            if (props.error) {
+              props.setError(null);
+            }
             setTitle(e.target.value);
           }}
           type="text"
           id="title"
           name="title"
           value={title}
+          required
         />
-        <br />
         <label htmlFor="rating">Rating (between 1 and 10):</label>
-        <br />
         <input
           className={styles.inputField}
           onChange={(e) => {
@@ -65,9 +70,7 @@ function AddMovieForm(props) {
           max="10"
           value={rating}
         />
-        <br />
         <label htmlFor="note">Note:</label>
-        <br />
         <input
           className={styles.inputField}
           onChange={(e) => {
@@ -78,15 +81,13 @@ function AddMovieForm(props) {
           name="note"
           value={note}
         />
-        <br />
-        <br />
         <input
           className={`${styles.btn} ${styles.submitBtn}`}
           type="submit"
           value="Submit"
         />
       </form>
-    </div>
+    </section>
   );
 }
 

@@ -1,0 +1,75 @@
+.appShell {
+  width: min(100% - 32px, 1200px);
+  margin: 0 auto;
+  padding: 38px 0 104px;
+}
+
+.appHeader {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.appHeader h1 {
+  margin: 0;
+  color: var(--accent);
+  font-family: var(--heading);
+  font-size: clamp(2rem, 7vw, 3rem);
+  line-height: 1.1;
+}
+
+.errorMessage {
+  margin: 12px auto;
+  color: var(--accent);
+  text-align: center;
+}
+
+.movieList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  align-items: stretch;
+  gap: 18px;
+}
+
+.toggleBtn {
+  position: fixed;
+  z-index: 10;
+  right: max(20px, calc((100vw - 1200px) / 2 + 20px));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  width: 60px;
+  height: 60px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background-color: var(--card-bg);
+  color: var(--accent);
+  font-family: var(--heading);
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 3px 10px rgba(47, 29, 18, 0.18), inset 0 0 0 3px rgba(181, 138, 59, 0.12);
+  margin: 0;
+}
+
+.toggleBtn:hover,
+.toggleBtn:focus-visible {
+  background-color: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  transform: scale(1.05);
+}
+
+.toggleBtn:focus-visible {
+  outline: 3px solid rgba(181, 138, 59, 0.45);
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .appShell {
+    width: min(100% - 24px, 1200px);
+    padding-top: 28px;
+  }
+}

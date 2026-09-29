@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import AddMovieForm from "./AddMovieForm";
 import MovieCard from "./MovieCard";
+import "./App.css";
+
 function App() {
   const [movies, setMovies] = useState([]);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -16,7 +18,7 @@ function App() {
         }
         const data = await response.json();
         setMovies(data);
-      } catch (error) {
+      } catch {
         setError("Failed to fetch movies from server");
       }
     }
@@ -42,7 +44,7 @@ function App() {
         prevMovies.map((movie) => (movie.id === id ? editedMovie : movie)),
       );
       return true;
-    } catch (error) {
+    } catch {
       setError("Failed to save changes");
       return false;
     }
@@ -61,14 +63,11 @@ function App() {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      const deletedMovie = await response.json();
       setMovies((prevMovies) => {
-        return prevMovies.filter((movie, index) => {
-          return movie.id !== id;
-        });
+        return prevMovies.filter((movie) => movie.id !== id);
       });
       return true;
-    } catch (error) {
+    } catch {
       setError("Failed to delete movie");
       return false;
     }
@@ -85,30 +84,42 @@ function App() {
   console.log(movies);
 
   return (
-    <div>
-      <div>
-        <h1>Movie Time 🍿</h1>
-      </div>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+    <main className="appShell">
+      <header className="appHeader">
+        <h1>Movie Time</h1>
+      </header>
+      {error && <p className="errorMessage">{error}</p>}
       {showAddForm && (
-        <AddMovieForm setMovies={setMovies} setError={setError} />
+        <AddMovieForm setMovies={setMovies} error={error} setError={setError} />
       )}
       {showAddForm ? (
-        <button onClick={handleShowAddingMovie}>➖</button>
+        <button
+          className="toggleBtn"
+          onClick={handleShowAddingMovie}
+          aria-label="Close add movie form"
+        >
+          -
+        </button>
       ) : (
-        <button onClick={handleShowAddingMovie}>➕</button>
+        <button
+          className="toggleBtn"
+          onClick={handleShowAddingMovie}
+          aria-label="Add a movie"
+        >
+          +
+        </button>
       )}
-      {movies.map((movieItem, index) => {
-        return (
+      <section className="movieList" aria-label="Your movies">
+        {movies.map((movieItem) => (
           <MovieCard
             key={movieItem.id}
             movieItem={movieItem}
             handleDeleteMovie={handleDeleteMovie}
             handleEditMovie={handleEditMovie}
           />
-        );
-      })}
-    </div>
+        ))}
+      </section>
+    </main>
   );
 }
 
