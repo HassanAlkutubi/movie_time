@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./AddMovieForm.module.css";
 
 function AddMovieForm(props) {
   const [title, setTitle] = useState("");
@@ -40,6 +41,7 @@ function AddMovieForm(props) {
         <label htmlFor="title">Movie Title:</label>
         <br />
         <input
+          className={styles.inputField}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
@@ -52,6 +54,7 @@ function AddMovieForm(props) {
         <label htmlFor="rating">Rating (between 1 and 10):</label>
         <br />
         <input
+          className={styles.inputField}
           onChange={(e) => {
             setRating(e.target.value);
           }}
@@ -66,6 +69,7 @@ function AddMovieForm(props) {
         <label htmlFor="note">Note:</label>
         <br />
         <input
+          className={styles.inputField}
           onChange={(e) => {
             setNote(e.target.value);
           }}
@@ -76,7 +80,11 @@ function AddMovieForm(props) {
         />
         <br />
         <br />
-        <input type="submit" value="Submit" />
+        <input
+          className={`${styles.btn} ${styles.submitBtn}`}
+          type="submit"
+          value="Submit"
+        />
       </form>
     </div>
   );
