@@ -1,39 +1,12 @@
-:root {
-  font-family: Georgia, 'Times New Roman', serif;
-  color: #382b25;
-  background: #f4eddf;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-
-  --text: #382b25;
-  --text-h: #261915;
-  --bg: #f4eddf;
-  --border: #b58a3b;
-  --card-bg: #fbf7ee;
-  --accent: #7b171b;
-  --accent-hover: #641115;
-  --secondary: #383532;
-  --heading: Georgia, 'Times New Roman', serif;
-  --sans: Arial, Helvetica, sans-serif;
-
-  font-size: 17px;
-  line-height: 1.5;
-}
-
-* {
-  box-sizing: border-box;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
-  min-width: 320px;
-  min-height: 100vh;
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--sans);
-}
-
-button,
-input {
-  font: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f3f4f6;
+  color: #1f2937;
 }
