@@ -4,8 +4,6 @@ A full-stack web application for tracking and managing your favorite movies. Bui
 
 ## 📸 Screenshots
 
-*(Replace the placeholder links below with actual screenshots of your application)*
-
 ![Home Page UI](https://via.placeholder.com/800x450?text=Home+Page+Screenshot)
 <br/>
 ![Add Movie Form](https://via.placeholder.com/800x450?text=Add+Movie+Screenshot)
